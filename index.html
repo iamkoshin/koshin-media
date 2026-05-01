@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- Vercel Analytics -->
+        <script defer src="/_vercel/insights/script.js"></script>
     <!-- FontAwesome Placeholder, using CDN or local SVGs is better usually, will use SVGs or text for now to avoid broken icons -->
 </head>
 
@@ -24,7 +27,8 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="logo"><img src="img/koshinmedia-logo-white.png" alt="Koshin Media" style="height: 40px;"></a>
+            <a href="index.html" class="logo"><img src="img/koshinmedia-logo-white.png" alt="Koshin Media"
+                    style="height: 40px;"></a>
             <ul class="nav-links">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
@@ -437,29 +441,37 @@
                 <div class="underline"></div>
             </div>
             <div class="contact-wrapper">
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                    <!-- Web3Forms Access Key - Replace with your own key from https://web3forms.com -->
+                    <input type="hidden" name="access_key" value="c69ed627-d05b-4256-9934-5730427c3f08">
+                    <input type="hidden" name="subject" value="New Contact Form Submission - Koshin Media">
+                    <input type="hidden" name="from_name" value="Koshin Media Website">
+                    <!-- Honeypot Spam Protection -->
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" placeholder="Your Name" required>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Your Email" required>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
                     </div>
                     <div class="form-group">
                         <label for="service">Service Needed</label>
-                        <select id="service">
-                            <option value="youtube">YouTube Editing</option>
-                            <option value="shorts">Reels / Shorts</option>
-                            <option value="ads">Video Ads</option>
-                            <option value="other">Other</option>
+                        <select id="service" name="service">
+                            <option value="YouTube Editing">YouTube Editing</option>
+                            <option value="Reels / Shorts">Reels / Shorts</option>
+                            <option value="Video Ads">Video Ads</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" rows="5" placeholder="Tell me about your project" required></textarea>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell me about your project"
+                            required></textarea>
                     </div>
                     <button type="submit" class="btn-primary">Send Message</button>
+                    <div id="formResult" class="form-result"></div>
                 </form>
                 <div class="contact-info">
                     <h3>Get in Touch</h3>
@@ -476,7 +488,8 @@
                                 rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
                         <li><a href="https://wa.me/252612688277" target="_blank" rel="noopener noreferrer"><i
                                     class="fab fa-whatsapp"></i> WhatsApp</a></li>
-                        <li><a href="mailto:mohamed.dev@gmail.com"><i class="fas fa-envelope"></i> Email Me</a></li>
+                        <li><a href="mailto:koshin.dev@gmail.com"><i class="fas fa-envelope"></i>
+                                Koshin.dev@gmail.com</a></li>
                     </ul>
                 </div>
             </div>
@@ -514,9 +527,8 @@
                             rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
                         <a href="https://www.linkedin.com/in/mohamed-abdirashid-478261371/" target="_blank"
                             rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://wa.me/252612688277" target="_blank" rel="noopener noreferrer"><i
-                                class="fab fa-whatsapp"></i></a>
-                        <a href="mailto:koshin.dev@gmail.com"><i class="fas fa-envelope"></i></a>
+
+
                     </div>
                 </div>
             </div>

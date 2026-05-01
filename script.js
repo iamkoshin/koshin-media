@@ -15,24 +15,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Form Submission Handling
+    // Form Submission Handling via Web3Forms
     const contactForm = document.getElementById('contactForm');
+    const formResult = document.getElementById('formResult');
+
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            // Simulate form sending
             const btn = contactForm.querySelector('button');
             const originalText = btn.textContent;
-            
+
             btn.textContent = 'Sending...';
             btn.disabled = true;
+            formResult.style.display = 'none';
 
-            setTimeout(() => {
-                alert('Thank you! Your message has been sent to Koshin Media.');
-                contactForm.reset();
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }, 1500);
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    formResult.textContent = '✅ Message sent successfully! I\'ll get back to you soon.';
+                    formResult.className = 'form-result success';
+                    formResult.style.display = 'block';
+                    contactForm.reset();
+                } else {
+                    formResult.textContent = '❌ Something went wrong. Please try again.';
+                    formResult.className = 'form-result error';
+                    formResult.style.display = 'block';
+                }
+            } catch (error) {
+                formResult.textContent = '❌ Network error. Please check your connection and try again.';
+                formResult.className = 'form-result error';
+                formResult.style.display = 'block';
+            }
+
+            btn.textContent = originalText;
+            btn.disabled = false;
         });
     }
 
