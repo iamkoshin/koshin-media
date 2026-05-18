@@ -7,6 +7,7 @@
     <title>Koshin Media | Professional Video Editing</title>
     <meta name="description"
         content="Koshin Media - Professional video editing services for YouTube, Reels, Ads, and more.">
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,13 +47,15 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero">
+        <canvas id="particleCanvas"></canvas>
         <div class="container hero-content">
-            <h1 class="fade-in">Stop Just Uploading. Start <span class="highlight">Captivating</span>.</h1>
-            <p class="fade-in delay-1">I turn your raw footage into high-retention content that grows your channel and
+            <div class="hero-badge" id="heroBadge"><i class="fas fa-film"></i> PROFESSIONAL VIDEO EDITOR</div>
+            <h1 class="typed-heading" id="heroHeading"></h1>
+            <p class="hero-subtitle" id="heroSubtitle">I turn your raw footage into high-retention content that grows your channel and
                 builds your brand.</p>
-            <div class="hero-btns fade-in delay-2">
+            <div class="hero-btns" id="heroBtns">
                 <a href="#portfolio" class="btn-primary">View Portfolio</a>
-                <a href="#contact" class="btn-secondary">Start Your Project</a>
+                <button class="btn-secondary btn-showreel" id="showreelBtn"><i class="fas fa-play"></i> Watch Showreel</button>
             </div>
         </div>
     </section>
@@ -94,126 +97,85 @@
                 <h2>My Work</h2>
                 <div class="underline"></div>
             </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="youtube">YouTube</button>
+                <button class="filter-btn" data-filter="shorts">Shorts</button>
+                <button class="filter-btn" data-filter="motion">Motion Graphics</button>
+                
+            </div>
             <div class="portfolio-grid">
-                <!-- Placeholders for Portfolio Items -->
-                <div class="portfolio-item">
-                    <div class="portfolio-thumb" style="background-color: #333;">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/uBwIYzIrnXY?rel=0"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Talking Head</h3>
-                        <p>YouTube Editing</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-category="youtube" data-video="https://www.youtube.com/embed/uBwIYzIrnXY?rel=0&autoplay=1">
                     <div class="portfolio-thumb">
-                        <iframe width="560" height="315"
-                            src="https://www.youtube.com/embed/8B26483Ksig?si=9cc3WO4dQoxwSvzQ"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <img src="https://img.youtube.com/vi/uBwIYzIrnXY/hqdefault.jpg" alt="Talking Head" loading="lazy">
+                        <div class="portfolio-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+                    </div>
+                    <div class="portfolio-info"><h3>Talking Head</h3><p>YouTube Editing</p></div>
+                </div>
+                <div class="portfolio-item" data-category="youtube" data-video="https://www.youtube.com/embed/8B26483Ksig?rel=0&autoplay=1">
+                    <div class="portfolio-thumb">
+                        <img src="https://img.youtube.com/vi/8B26483Ksig/hqdefault.jpg" alt="Documentary" loading="lazy">
+                        <div class="portfolio-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+                    </div>
+                    <div class="portfolio-info"><h3>Documentary</h3><p>YouTube Editing</p></div>
+                </div>
+                <div class="portfolio-item" data-category="youtube" data-video="https://www.youtube.com/embed/PSQ7Tl3ABs8?rel=0&autoplay=1">
+                    <div class="portfolio-thumb">
+                        <img src="https://img.youtube.com/vi/PSQ7Tl3ABs8/hqdefault.jpg" alt="Tutorial Video" loading="lazy">
+                        <div class="portfolio-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+                    </div>
+                    <div class="portfolio-info"><h3>Tutorial Video</h3><p>YouTube Editing</p></div>
+                </div>
+                <div class="portfolio-item" data-category="youtube"
+                    data-video="https://www.youtube.com/embed/-UHiA3Oc7Mo?rel=0&autoplay=1">
+                    <div class="portfolio-thumb">
+                        <img src="https://img.youtube.com/vi/-UHiA3Oc7Mo/hqdefault.jpg" alt="Faceless Video" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="play-icon"><i class="fas fa-play"></i></div>
+                        </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Documentary</h3>
+                        <h3>Faceless Video</h3>
                         <p>YouTube Editing</p>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-thumb" style="background-color: #222;">
-                        <iframe width="560" height="315"
-                            src="https://www.youtube.com/embed/PSQ7Tl3ABs8?si=zf63pCeokiZjZ5fc"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="portfolio-item" data-category="motion" data-video="https://www.youtube.com/embed/DRHeKQKN21g?rel=0&autoplay=1">
+                    <div class="portfolio-thumb">
+                        <img src="https://img.youtube.com/vi/DRHeKQKN21g/hqdefault.jpg" alt="Motion Graphics Ads" loading="lazy">
+                        <div class="portfolio-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="portfolio-info">
-                        <h3>Tutorial Video</h3>
-                        <p>Youtube</p>
-                    </div>
+                    <div class="portfolio-info"><h3>Motion Graphics Ads</h3><p>Motion Graphics</p></div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-thumb" style="background-color: #222;">
-                        <iframe width="560" height="315"
-                            src="https://www.youtube.com/embed/DRHeKQKN21g?si=mLzn7Cs0QfMhY3i9"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="portfolio-item" data-category="motion" data-video="https://www.youtube.com/embed/zMixi2bbpgw?rel=0&autoplay=1">
+                    <div class="portfolio-thumb">
+                        <img src="https://img.youtube.com/vi/zMixi2bbpgw/hqdefault.jpg" alt="Motion Graphics Ads" loading="lazy">
+                        <div class="portfolio-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="portfolio-info">
-                        <h3>Motion Graphics Ads</h3>
-                        <p>Motion Graphics</p>
-                    </div>
+                    <div class="portfolio-info"><h3>Motion Graphics Ads</h3><p>Motion Graphics</p></div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-thumb" style="background-color: #222;">
-                        <iframe width="560" height="315"
-                            src="https://www.youtube.com/embed/zMixi2bbpgw?si=i1Tjc0bRyh56PFp6"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                
+                <div class="portfolio-item" data-category="shorts" data-video="https://player.vimeo.com/video/1163371055?autoplay=1" data-aspect="vertical">
+                    <div class="portfolio-thumb">
+                        <img src="https://vumbnail.com/1163371055.jpg" alt="Wheelbees Ads" loading="lazy">
+                        <div class="portfolio-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="portfolio-info">
-                        <h3>Motion Graphics Ads</h3>
-                        <p>Motion Graphics</p>
-                    </div>
+                    <div class="portfolio-info"><h3>Reels / Shorts</h3><p>Vertical Video</p></div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-thumb" style="background-color: #555;">
-                        <iframe width="560" height="315"
-                            src="https://www.youtube.com/embed/KO5-wYif4W8?si=OQLmkyvh8B4yFBji"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="portfolio-item" data-category="shorts" data-video="https://player.vimeo.com/video/1163424662?autoplay=1" data-aspect="vertical">
+                    <div class="portfolio-thumb">
+                        <img src="https://vumbnail.com/1163424662.jpg" alt="Scholarship Short" loading="lazy">
+                        <div class="portfolio-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="portfolio-info">
-                        <h3>Event Highlights</h3>
-                        <p>Event Highlights</p>
-                    </div>
+                    <div class="portfolio-info"><h3>Reels / Shorts</h3><p>Vertical Video</p></div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-thumb vertical" style="background-color: #222;">
-                        <iframe
-                            src="https://player.vimeo.com/video/1163371055?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                            width="1080" height="1920" frameborder="0"
-                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" title="Wheelbees ads video"></iframe>
+                <div class="portfolio-item" data-category="shorts" data-video="https://player.vimeo.com/video/1163435460?autoplay=1" data-aspect="vertical">
+                    <div class="portfolio-thumb">
+                        <img src="https://vumbnail.com/1163435460.jpg" alt="Podcast Short" loading="lazy">
+                        <div class="portfolio-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
                     </div>
-                    <div class="portfolio-info">
-                        <h3>Reels / Shorts</h3>
-                        <p>Vertical Video</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-thumb vertical" style="background-color: #222;">
-                        <iframe
-                            src="https://player.vimeo.com/video/1163424662?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                            width="400" height="300" frameborder="0"
-                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" title="Scolarship short edit"></iframe>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Reels / Shorts</h3>
-                        <p>Vertical Video</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-thumb vertical" style="background-color: #222;">
-                        <iframe
-                            src="https://player.vimeo.com/video/1163435460?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                            width="400" height="300" frameborder="0"
-                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" title="Podcast short"></iframe>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Reels / Shorts</h3>
-                        <p>Vertical Video</p>
-                    </div>
+                    <div class="portfolio-info"><h3>Reels / Shorts</h3><p>Vertical Video</p></div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 
@@ -226,25 +188,36 @@
                 <div class="underline"></div>
             </div>
             <div class="about-content">
+                <div class="about-image">
+                    <div class="about-photo-placeholder">
+                        <span>KM</span>
+                    </div>
+                </div>
                 <div class="about-text">
                     <p>At <strong>Koshin Media</strong>, I don't just edit videos—I craft stories that keep viewers
                         watching. My mission is to help you stand out in a crowded feed.</p>
                     <p>You focus on filming the content you love. I'll handle the technical side—editing, pacing, and
                         polish—so you can grow faster.</p>
+                    <div class="about-tools">
+                        <span class="tool-badge"><i class="fas fa-video"></i> Premiere Pro</span>
+                        <span class="tool-badge"><i class="fas fa-wand-magic-sparkles"></i> After Effects</span>
+                        <span class="tool-badge"><i class="fas fa-pen-nib"></i> Illustrator</span>
+                        <span class="tool-badge"><i class="fas fa-image"></i> Photoshop</span>
+                    </div>
                 </div>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <h3>500+</h3>
-                        <p>Videos Edited</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>20+</h3>
-                        <p>Happy Clients</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>5M+</h3>
-                        <p>Views Generated</p>
-                    </div>
+            </div>
+            <div class="about-stats">
+                <div class="stat-item" data-count="500" data-suffix="+">
+                    <h3>0</h3>
+                    <p>Videos Edited</p>
+                </div>
+                <div class="stat-item" data-count="20" data-suffix="+">
+                    <h3>0</h3>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="stat-item" data-count="5" data-suffix="M+">
+                    <h3>0</h3>
+                    <p>Views Generated</p>
                 </div>
             </div>
         </div>
@@ -252,30 +225,29 @@
 
     <!-- Services Section -->
     <section id="services" class="services">
-        <div class="container">
+        <div class="container section-glow">
             <div class="section-header">
                 <h2>My Services</h2>
                 <div class="underline"></div>
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="icon">📺</div>
+                    <div class="icon-wrap"><i class="fab fa-youtube"></i></div>
                     <h3>YouTube Editing</h3>
                     <p>Long-form content editing with engaging pacing, b-roll, and storytelling to boost retention.</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon">📱</div>
+                    <div class="icon-wrap"><i class="fas fa-mobile-screen-button"></i></div>
                     <h3>Reels & Shorts</h3>
-                    <p>Fast-paced, vertical short-form content designed for TikTok, Instagram Reels, and YouTube Shorts.
-                    </p>
+                    <p>Fast-paced, vertical short-form content designed for TikTok, Instagram Reels, and YouTube Shorts.</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon">🗣️</div>
+                    <div class="icon-wrap"><i class="fas fa-microphone-lines"></i></div>
                     <h3>Talking Head</h3>
                     <p>Clean and professional editing for courses, interviews, and corporate communications.</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon">🚀</div>
+                    <div class="icon-wrap"><i class="fas fa-bullhorn"></i></div>
                     <h3>Video Ads</h3>
                     <p>High-conversion video creatives for Facebook, Instagram, and YouTube ads.</p>
                 </div>
@@ -394,7 +366,7 @@
                                     alt="MaliFino"></div>
                             <div class="client-details">
                                 <h4>MaliFino</h4>
-                                <p>E-commerce Brand Owner</p>
+                                <p>YouTuber</p>
                             </div>
                         </div>
                     </div>
@@ -415,10 +387,78 @@
                                     alt="Abdalla"></div>
                             <div class="client-details">
                                 <h4>Abdalla</h4>
-                                <p>Online Educator</p>
+                                <p>Marketing Manager, Marwa Fertility Hospital</p>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How I Work Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>How I Work</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-icon"><i class="fas fa-envelope-open-text"></i></div>
+                    <div class="step-number">01</div>
+                    <h3>Brief</h3>
+                    <p>Share your vision, footage, and goals</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon"><i class="fas fa-scissors"></i></div>
+                    <div class="step-number">02</div>
+                    <h3>Edit</h3>
+                    <p>I craft your story with precision</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon"><i class="fas fa-arrows-rotate"></i></div>
+                    <div class="step-number">03</div>
+                    <h3>Revise</h3>
+                    <p>You review, I refine until perfect</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="step-number">04</div>
+                    <h3>Deliver</h3>
+                    <p>Final files, ready to publish</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question"><span>What's your turnaround time?</span><i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>Typical turnaround is 3-5 business days for YouTube videos and 1-2 days for Reels/Shorts. Rush delivery is available upon request.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>How many revisions do I get?</span><i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>Every project includes 2 rounds of revisions. Additional revisions can be discussed based on scope.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>What file formats do you deliver?</span><i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>I deliver in MP4 (H.264/H.265), MOV, or any format your platform requires. Vertical and horizontal versions included when applicable.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>How do I send you my footage?</span><i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>You can share footage via Google Drive, Dropbox, WeTransfer, or any cloud storage. I'll guide you through the process.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>Do you offer monthly packages?</span><i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>Yes! I offer discounted monthly retainer packages for creators who need consistent editing. Contact me to discuss a custom plan.</p></div>
                 </div>
             </div>
         </div>
@@ -510,18 +550,17 @@
                 <div class="footer-socials">
                     <h4>Connect With Me</h4>
                     <div class="social-icons">
-                        <a href="https://www.tiktok.com/@koshinmedia" target="_blank" rel="noopener noreferrer"><i
-                                class="fab fa-tiktok"></i></a>
-                        <a href="https://www.instagram.com/koshinmedia/" target="_blank" rel="noopener noreferrer"><i
-                                class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/p/Koshin-Media-61569869589208" target="_blank"
-                            rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.linkedin.com/in/mohamed-abdirashid-478261371/" target="_blank"
-                            rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-
-
+                        <a href="https://www.tiktok.com/@koshinmedia" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/koshinmedia/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/p/Koshin-Media-61569869589208" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/mohamed-abdirashid-478261371/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/252612688277" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+                        
                     </div>
                 </div>
+            </div>
+            <div class="footer-cta">
+                <p>Ready to start? <a href="#contact">Get in Touch <i class="fas fa-arrow-right"></i></a></p>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Koshin Media. All Rights Reserved.</p>
@@ -529,7 +568,15 @@
         </div>
     </footer>
 
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <div class="lightbox-content" id="lightboxContent"></div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
     <script src="script.js"></script>
 </body>
-
 </html>
